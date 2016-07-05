@@ -23,9 +23,10 @@
     <h4><a href="{{ route('users.index') }}">Listar usuarios</a></h4>
     <hr>
 
-    <form method="post" action="/users">
+    <form method="post" action="/users/{{ $user->id }}">
+        <input name="_method" type="hidden" value="PUT">
         @include('user.form')
-        <button type="submit" class="btn btn-default">Registrar</button>
+        <button type="submit" class="btn btn-success">Actualizar</button>
     </form>
 </div>
 
