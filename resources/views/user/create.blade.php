@@ -21,7 +21,8 @@
 <div class="container">
     <h1>Registro de Usuarios</h1>
 
-    <form>
+    <form method="post" action="/users">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="exampleInputEmail1">Nombres</label>
             <input type="text" name="name" class="form-control" placeholder="Nombres">
