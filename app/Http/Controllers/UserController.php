@@ -42,4 +42,20 @@ class UserController extends Controller
             return "Fatal error - ".$e->getMessage();
         }
     }
+
+    public function destroy($id){
+        try{
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('users.index');
+        } catch (Exception $e){
+
+            return "Fatal error - ".$e->getMessage();
+        }
+
+    }
+
+    public function edit($id){
+        return $id;
+    }
 }

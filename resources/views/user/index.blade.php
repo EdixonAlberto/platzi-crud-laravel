@@ -40,7 +40,15 @@
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->email }}</td>
                         <td>{{ $row->created_at }}</td>
-                        <td><a href="{{ $row->id }}">Editar</a> - <a href="{{ $row->id }}">Eliminar</a></td>
+                        <td>
+                            <a href="{{ route('users.edit', $row->id) }}" class="btn btn-info">Editar</a>
+
+                            <form action="{{ route('users.destroy', $row->id) }}" method="post">
+                                <input name="_method" type="hidden" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
                 @endforeach
