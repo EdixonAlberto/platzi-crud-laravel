@@ -15,7 +15,8 @@ class UserController extends Controller
 
     public function index(){
 
-        return User::all();
+        $data = User::all();
+        return view($this->path.'.index', compact('data'));
     }
 
     public function create(){

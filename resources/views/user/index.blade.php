@@ -19,29 +19,34 @@
 <body>
 
 <div class="container">
-    <h1>Registro de Usuarios</h1>
-    <h4><a href="{{ route('users.index') }}">Listar usuarios</a></h4>
+    <h1>Lista de Usuarios</h1>
+    <h4><a href="{{ route('users.create') }}">Registrar nuevo usuario</a></h4>
     <hr>
 
-    <form method="post" action="/users">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Nombres</label>
-            <input type="text" name="name" class="form-control" placeholder="Nombres">
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" class="form-control" placeholder="Email">
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-        </div>
-
-        <button type="submit" class="btn btn-default">Registrar</button>
-    </form>
+    <div class="table-responsive">
+        @if($data)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Nombres</td>
+                        <td>Email</td>
+                        <td>Creado</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($data as $row)
+                    <tr>
+                        <td>{{ $row->name }}</td>
+                        <td>{{ $row->email }}</td>
+                        <td>{{ $row->created_at }}</td>
+                        <td><a href="{{ $row->id }}">Editar</a> - <a href="{{ $row->id }}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+                @endforeach
+            </table>
+        @endif
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
